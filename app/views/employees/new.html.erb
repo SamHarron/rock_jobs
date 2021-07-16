@@ -2,6 +2,7 @@
 <h2> Complete the Form Below to Create a Profile.</h2>
 
 <%= form_for @employee do |f| %>
+    <%= render partial: "layouts/errors", locals: {record: @employee} %>
     <%= f.label :username%>
     <%= f.text_field :username %></br></br>
     <%= f.label :email%>
