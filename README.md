@@ -1,3 +1,6 @@
+This Rails Application is for Countertop Companies and their Employees 
+
+
 # README
 
 This README would normally document whatever steps are necessary to get the
