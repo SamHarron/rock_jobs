@@ -7,6 +7,7 @@ class EmployeesController < ApplicationController
     def create 
        @employee = Employee.create(employee_params)
        if @employee.save
+        session[:employee_id] = @employee.id
         render :home
        else
         render :new
