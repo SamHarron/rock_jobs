@@ -1,0 +1,8 @@
+<% flash.each do |type, msg| %>
+    <ul class="flash <%= type %>">
+        <% msg.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+        

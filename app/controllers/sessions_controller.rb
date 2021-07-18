@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
             session[:employee_id] = employee.id
             redirect_to employee
         else
-            flash[:errors] = ["Invalid Login Username and/or Password, Please Try Again."]
+            flash[:errors] = ["Invalid Login. Please Try Again."]
             redirect_to '/login'
         end
     end
