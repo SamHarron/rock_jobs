@@ -1,4 +1,4 @@
-<h1> Welcome to Our Team! </h1>
+<h1> Welcome! </h1>
 <h2> Complete the Form Below to Create a Profile.</h2>
 
 <%= form_for @employee do |f| %>
@@ -7,6 +7,11 @@
     <%= f.text_field :username %></br></br>
     <%= f.label :email%>
     <%= f.email_field :email %></br></br>
+    <div>
+    <%= f.label :contact_number, 'Contact Number' %>
+    <%= f.phone_field :contact_number %>
+    * Include Area Code. Ex: 1112223333 or 111-222-3333
+    </div></br></br>
     <%= f.label :password %>
     <%= f.password_field :password %></br></br>
     <%= f.label :password_confirmation%>
