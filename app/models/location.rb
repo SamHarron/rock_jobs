@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-    has_many :employees
+    belongs_to :employee
 
     validates :street_address, presence: true
     validates :city, presence: true
