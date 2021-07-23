@@ -1,6 +1,8 @@
 class Employee < ApplicationRecord
     has_many :locations
-
+    has_many :measurements
+    has_many :measured_locations, through: :measurements, source: :locations
+    
     has_secure_password
 
     validates :username, presence: true, uniqueness: true
