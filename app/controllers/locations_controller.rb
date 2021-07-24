@@ -3,15 +3,19 @@ class LocationsController < ApplicationController
 
 
     def new
-        @location = Location.new
+        if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+            @location = @employee.locations.build
+        else
+            @location = Location.new
+        end
     end
 
     def create 
-        @location = Location.new(location_params)
+        @location = current_user.locations.build(location_params)
         if @location.save
-         redirect_to locations_path
+            redirect_to employee_location_path
         else
-         render :new
+            render :new
         end
     end 
  
