@@ -1,7 +1,7 @@
 class Employee < ApplicationRecord
     has_many :locations
     has_many :measurements
-    has_many :measured_locations, through: :measurements, source: :locations
+    has_many :measured_locations, through: :measurements, source: :location
     
     has_secure_password
 

@@ -3,11 +3,13 @@ class MeasurementsController < ApplicationController
 
   
   def index
+ 
     if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurements = @location.measurements
     else
-     flash[:errors] = ["That Location Does Not Exist"]
-     @measurements = Measurement.all
+      @error = ["That Location Does Not Exist"] if params[:location_id]
+      redirect_to locations_path
+
     end
   end
 
@@ -41,6 +43,6 @@ class MeasurementsController < ApplicationController
   private
 
   def measurement_params
-    params.require(:measurement).permit(:length, :width, :date, location_id, employee_id)
+    params.require(:measurement).permit(:length, :width, :date, location_id)
   end
 end

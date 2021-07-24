@@ -1,2 +1,11 @@
-<h1> Location Address:  </h1>
+<% if @location %>
+    <h1> Location Address: <%= @location.street_address %> </h1>
+<% else %>
+    <h1> Measurements </h1>
+<% end %>
 
+<ul>
+<% @measurements.each do |m|%>
+  <li><%= m.employee.username %> - <%= m.length %>" x <%= m.width %>" 
+<% end %>
+</ul>
