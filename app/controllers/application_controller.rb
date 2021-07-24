@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
     end
 
     def logged_in?
-        !!session[:user_id]
+        !!session[:employee_id]
     end
 
     def require_logged_in
-        redirect_to '/' if !logged_in?
+        redirect_to '/login' if !logged_in?
     end
 
 end
