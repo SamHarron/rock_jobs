@@ -1,2 +1,13 @@
-<h1>Measurements#new</h1>
-<p>Find me in app/views/measurements/new.html.erb</p>
+<h1>New Measurement</h1>
+
+<%= form_for(@measurement) do |f|%>
+  <%= f.label :location %>
+  <%= f.collection_select :location_id, Location.all, :id, :street_address %></br></br>
+  <%= f.label :length %>
+  <%= f.number_field :length %></br></br>
+  <%= f.label :width %>
+  <%= f.number_field :width %></br></br>
+  <%= f.label :date %>
+  <%= f.date_field :date %></br></br>
+  <%= f.submit %>
+<% end %>
