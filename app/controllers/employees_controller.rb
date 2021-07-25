@@ -16,7 +16,13 @@ class EmployeesController < ApplicationController
 
 
     def show
-        @employee = Employee.find(params[:id])
+        require_logged_in
+        if 
+            @employee = Employee.find_by_id(params[:id])
+        else
+            session.clear
+            redirect_to '/login'
+        end
     end
 
 
