@@ -21,6 +21,19 @@ class EmployeesController < ApplicationController
         redirect_to '/signup' if !@employee
     end
 
+    def edit
+        @employee = Employee.find_by_id(params[:id])
+    end
+
+    def update
+        @employee = Employee.find_by_id(params[:id])
+       if @employee.update(employee_params)
+         redirect_to employee_path(@employee)
+       else
+         render :edit
+       end
+     end
+
 
     private
 

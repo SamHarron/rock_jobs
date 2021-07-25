@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#logout', as: 'logout'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
-  resources :employees, only: [:new, :create, :show] do
+  resources :employees, only: [:new, :create, :show, :update, :edit] do
     resources :locations, only: [:new, :create, :index, :show, :update, :edit]
   end
 
