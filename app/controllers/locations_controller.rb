@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
 
 
     def new
-        if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+        if employee_check
             @location = @employee.locations.build
         else
             @location = Location.new
@@ -20,10 +20,11 @@ class LocationsController < ApplicationController
     end 
 
     def index
-        if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+        if employee_check
           @locations = @employee.locations
         else
           flash[:errors] = ["Employee Not Found"] if params[:employee_id]
+          session.clear
           redirect_to signup_path
         end
     end
@@ -32,6 +33,10 @@ class LocationsController < ApplicationController
  
      def location_params
          params.require(:location).permit(:employee_id, :city, :state, :street_address, :zip_code)
+     end
+
+     def employee_check
+        params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
      end
 
 

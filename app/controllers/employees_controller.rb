@@ -17,12 +17,8 @@ class EmployeesController < ApplicationController
 
     def show
         require_logged_in
-        if 
-            @employee = Employee.find_by_id(params[:id])
-        else
-            session.clear
-            redirect_to '/login'
-        end
+        @employee = Employee.find_by_id(params[:id])
+        redirect_to '/signup' if !@employee
     end
 
 
