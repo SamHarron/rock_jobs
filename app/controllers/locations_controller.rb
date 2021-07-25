@@ -29,12 +29,11 @@ class LocationsController < ApplicationController
     end
 
     def edit
-        @location = Location.find_by_id(params[:id])
-        redirect_to employee_path if !@location || @location.employee != current_user
+        find_location
     end
 
     def update
-        @location = Location.find_by_id(params[:id])
+        find_location
         redirect_to employee_path if !@location || @location.employee != current_user
        if @location.update(location_params)
          redirect_to employee_locations_path(@location)
@@ -53,5 +52,8 @@ class LocationsController < ApplicationController
         params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
      end
 
+     def find_location
+        @location = Location.find_by_id(params[:id])
+     end
 
 end

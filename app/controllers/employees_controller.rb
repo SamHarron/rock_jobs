@@ -17,16 +17,16 @@ class EmployeesController < ApplicationController
 
     def show
         require_logged_in
-        @employee = Employee.find_by_id(params[:id])
+        find_employee
         redirect_to '/signup' if !@employee
     end
 
     def edit
-        @employee = Employee.find_by_id(params[:id])
+        find_employee
     end
 
     def update
-        @employee = Employee.find_by_id(params[:id])
+        find_employee
        if @employee.update(employee_params)
          redirect_to employee_path(@employee)
        else
@@ -39,5 +39,9 @@ class EmployeesController < ApplicationController
 
     def employee_params
         params.require(:employee).permit(:username, :email, :contact_number, :password, :password_confirmation)
+    end
+
+    def find_employee
+        @employee = Employee.find_by_id(params[:id])
     end
 end
