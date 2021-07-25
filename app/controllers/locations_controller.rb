@@ -24,10 +24,24 @@ class LocationsController < ApplicationController
           @locations = @employee.locations
         else
           flash[:errors] = ["Employee Not Found"] if params[:employee_id]
-          session.clear
-          redirect_to signup_path
+          redirect_to employee_path(current_user)
         end
     end
+
+    def edit
+        @location = Location.find_by_id(params[:id])
+        redirect_to employee_path if !@location || @location.employee != current_user
+    end
+
+    def update
+        @location = Location.find_by_id(params[:id])
+        redirect_to employee_path if !@location || @location.employee != current_user
+       if @location.update(location_params)
+         redirect_to employee_locations_path(@location)
+       else
+         render :edit
+       end
+     end
  
      private
  
