@@ -41,6 +41,11 @@ class LocationsController < ApplicationController
          render :edit
        end
      end
+
+     def show
+        find_location
+        redirect_to employee_locations_path if !@location
+      end
  
      private
  
