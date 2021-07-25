@@ -13,11 +13,20 @@ class LocationsController < ApplicationController
     def create 
         @location = current_user.locations.build(location_params)
         if @location.save
-            redirect_to employee_location_path
+            redirect_to employee_locations_path(current_user)
         else
             render :new
         end
     end 
+
+    def index
+        if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+          @locations = @employee.locations
+        else
+          flash[:errors] = ["Employee Not Found"] if params[:employee_id]
+          redirect_to signup_path
+        end
+    end
  
      private
  
