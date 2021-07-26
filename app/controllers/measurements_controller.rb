@@ -29,13 +29,18 @@ class MeasurementsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
+    find_measurement
   end
 
   def update
+    find_measurement
+      redirect_to employee_path if !@measurement || @measurement.employee != current_user
+     if @measurement.update(measurement_params)
+     redirect_to measurements_path
+     else
+     render :edit
+     end
   end
 
   private
@@ -46,5 +51,9 @@ class MeasurementsController < ApplicationController
 
   def found_measurement?
     params[:location_id] && @location = Location.find_by_id(params[:location_id])
+  end
+
+  def find_measurement
+    @measurement = Measurement.find_by_id(params[:id])
   end
 end
