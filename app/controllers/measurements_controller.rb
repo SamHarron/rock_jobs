@@ -35,7 +35,7 @@ class MeasurementsController < ApplicationController
 
   def update
     if find_measurement.update(measurement_params)
-      redirect_to location_path(@measurement)
+      redirect_to employee_locations_path(@measurement)
     else
       render :edit
     end
