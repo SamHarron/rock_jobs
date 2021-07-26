@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   end
 
   resources :locations do
-    resources :measurements, only: [:new, :create, :index]
+    resources :measurements, only: [:index]
   end
 
-  resources :measurements, only: [:edit, :update]
+  resources :measurements, only: [:edit, :update, :new, :create]
 
 end
 

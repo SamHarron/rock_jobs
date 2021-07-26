@@ -3,7 +3,8 @@
 <%= form_for(@measurement) do |f|%>
   <%= render partial: "layouts/errors", locals: {record: @measurement} %>
   <%= f.label :location %>
-  <%= f.collection_select :location_id, Location.all, :id, :street_address %></br></br>
+  <%= f.collection_select :location_id, Location.all, :id, :street_address %>  <p>*Select The Correct Location Address</p>
+</br>
   <%= f.label :length %>
   <%= f.number_field :length %></br></br>
   <%= f.label :width %>

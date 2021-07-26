@@ -4,9 +4,20 @@
     <h1> Please Sign In or Sign Up </h1>
 <% end %>
 
+<% if @measurements == [] %>
+  <h5> This Location Has No Measurements </h5>
+  <% else %>
 <ul>
 <% @measurements.each do |m|%>
   <li><%= m.employee.username %> - <%= m.length %>" x <%= m.width %>"
   </br>Measured On: <%= m.date %> </br></br>
 <% end %>
 </ul>
+<% end %>
+
+
+
+
+
+
+<p><%= link_to 'Add A New Measurement', new_measurement_path(@location)%></p>

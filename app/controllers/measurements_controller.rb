@@ -52,6 +52,6 @@ class MeasurementsController < ApplicationController
   end
 
   def find_measurement
-    @measurement = Measurement.find_by_id(params[:id])
+    @measurement = Measurement.find_by(params[:location_id])
   end
 end
