@@ -34,13 +34,11 @@ class MeasurementsController < ApplicationController
   end
 
   def update
-    find_measurement
-      redirect_to employee_path if !@measurement || @measurement.employee != current_user
-     if @measurement.update(measurement_params)
-     redirect_to measurements_path
-     else
-     render :edit
-     end
+    if find_measurement.update(measurement_params)
+      redirect_to location_path(@measurement)
+    else
+      render :edit
+    end
   end
 
   private
