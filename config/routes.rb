@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :measurements, only: [:new, :create, :index]
   end
 
-  resources :measurements
+  resources :measurements, only: [:edit, :update]
 
 end
 

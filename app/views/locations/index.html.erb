@@ -8,7 +8,8 @@
 
 <ul>
 <% @locations.each do |loc|%>
-  <li><%= loc.street_address %>
+  <li><%= loc.street_address %> - 
+  <%= link_to 'View Measurements', location_measurements_path(loc) %>
 <% end %>
 </ul>
 
