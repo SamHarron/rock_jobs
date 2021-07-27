@@ -1,18 +1,20 @@
 class MeasurementsController < ApplicationController
   before_action :require_logged_in
+  before_action :set_measurement, only: [:edit, :update]
+  before_action :redirect_if_not_employee, only: [:edit, :update]
 
   
   def index
-    if found_measurement?
+    if params[:location_id] && @location = Location.find_by(params[:location_id])
       @measurements = @location.measurements
     else
       flash[:errors] = ["That Location Does Not Exist"] if params[:location_id]
-      redirect_to locations_path
+      redirect_to employee_locations_path(current_user)
     end
   end
 
   def new
-    if found_measurement?
+    if params[:location_id] && @location = Location.find_by(params[:location_id])
       @measurement = @location.measurements.build
     else
       flash[:errors] = ["That Location Does Not Exist"] if params[:location_id]
@@ -30,12 +32,11 @@ class MeasurementsController < ApplicationController
   end
 
   def edit
-    find_measurement
   end
 
   def update
-    if find_measurement.update(measurement_params)
-      redirect_to employee_locations_path(@measurement)
+    if @measurement.update(measurement_params)
+      redirect_to location_measurements_path(@measurement)
     else
       render :edit
     end
@@ -47,11 +48,15 @@ class MeasurementsController < ApplicationController
     params.require(:measurement).permit(:location_id, :length, :width, :date)
   end
 
-  def found_measurement?
-    params[:location_id] && @location = Location.find_by_id(params[:location_id])
+  def set_measurement
+    @measurement = Measurement.find_by(id: params[:id])
+    if !@measurement
+      flash[:message] = "Measurement was not found"
+      redirect_to employee_path(current_user)
+    end
   end
 
-  def find_measurement
-    @measurement = Measurement.find_by(params[:location_id])
-  end
+  def redirect_if_not_employee
+    redirect_to login_path if @measurement.employee != current_user
+ end
 end
