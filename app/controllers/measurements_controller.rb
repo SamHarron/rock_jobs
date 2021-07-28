@@ -5,7 +5,7 @@ class MeasurementsController < ApplicationController
 
   
   def index
-    if params[:location_id] && @location = Location.find_by(params[:location_id])
+    if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurements = @location.measurements
     else
       flash[:errors] = ["That Location Does Not Exist"] if params[:location_id]
@@ -14,7 +14,7 @@ class MeasurementsController < ApplicationController
   end
 
   def new
-    if params[:location_id] && @location = Location.find_by(params[:location_id])
+    if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurement = @location.measurements.build
     else
       flash[:errors] = ["That Location Does Not Exist"] if params[:location_id]
