@@ -10,6 +10,15 @@ class LocationsController < ApplicationController
         end
     end
 
+    def index
+        if employee_check
+          @locations = @employee.locations
+        else
+          flash[:errors] = ["Employee Not Found"] if params[:employee_id]
+          redirect_to employee_path(current_user)
+        end
+    end
+
     def create 
         @location = current_user.locations.build(location_params)
         if @location.save
@@ -19,14 +28,7 @@ class LocationsController < ApplicationController
         end
     end 
 
-    def index
-        if employee_check
-          @locations = @employee.locations
-        else
-          flash[:errors] = ["Employee Not Found"] if params[:employee_id]
-          redirect_to employee_path(current_user)
-        end
-    end
+
 
     def edit
         find_location
@@ -54,7 +56,7 @@ class LocationsController < ApplicationController
      end
 
      def employee_check
-        params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+        params[:employee_id] && @employee = current_user
      end
 
      def find_location
