@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
     end
 
     def index
-        if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+        if params[:employee_id] && employee_check
           @locations = @employee.locations
         else
           session.clear

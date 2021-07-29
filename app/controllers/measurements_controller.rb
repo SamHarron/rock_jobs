@@ -8,7 +8,7 @@ class MeasurementsController < ApplicationController
     if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurements = @location.measurements
     else
-      flash[:errors] = ["That Location Does Not Exist"] if params[:location_id]
+      flash[:errors] = "That Location Does Not Exist" if params[:location_id]
       redirect_to employee_locations_path(current_user)
     end
   end
@@ -17,7 +17,7 @@ class MeasurementsController < ApplicationController
     if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurement = @location.measurements.build
     else
-      flash[:errors] = ["That Location Does Not Exist"] if params[:location_id]
+      flash[:errors] = "That Location Does Not Exist" if params[:location_id]
       @measurement = Measurement.new
     end
   end
