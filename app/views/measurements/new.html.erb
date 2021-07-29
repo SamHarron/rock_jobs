@@ -5,7 +5,7 @@
 
 <%= form_for([@measurement.location,@measurement]) do |f|%>
   <%= f.label :location %>
-  <%= f.text_field :location, value: @location.street_address  %></br></br>
+  <%= f.text_field :location, value: @measurement.location.street_address %></br></br>
   <%= f.label :length %>
   <%= f.number_field :length %></br></br>
   <%= f.label :width %>
