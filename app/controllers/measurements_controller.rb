@@ -51,7 +51,7 @@ class MeasurementsController < ApplicationController
   def set_measurement
     @measurement = Measurement.find_by(id: params[:id])
     if !@measurement
-      flash[:message] = "Measurement was not found"
+      flash[:errors] = ["Measurement was not found"]
       redirect_to employee_path(current_user)
     end
   end
