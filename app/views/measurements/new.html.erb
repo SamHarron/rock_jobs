@@ -1,17 +1,4 @@
 <h1>New measurement for <%= @measurement.location.street_address %></h1>
 
-<%= render partial: "layouts/errors", locals: {record: @measurement} %>
+<%= render partial: "measurements", locals: {edit_measurement: @measurement} %>
 
-
-<%= form_for([@measurement.location,@measurement]) do |f|%>
-  <%= f.label :location %>
-  <%= f.text_field :location, value: @measurement.location.street_address %></br></br>
-  <%= f.label :length %>
-  <%= f.number_field :length %></br></br>
-  <%= f.label :width %>
-  <%= f.number_field :width %></br></br>
-  <%= f.label :date %>
-  <%= f.date_field :date %></br></br>
-  <%= f.hidden_field :location_id %>
-  <%= f.submit %>
-<% end %>

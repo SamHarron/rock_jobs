@@ -1,18 +1,13 @@
-<%= form_for @measurement do |f|%>
-  <%= render partial: "layouts/errors", locals: {record: @location} %>
-  <% if current_user %>
-    <%= f.text_field :location_id, required: true, class: 'form-control', value: @location.street_address  %>
-<% else %>
-    <%= f.text_field :email, required: true, class: 'form-control'%>
-<% end %>
+  <%= form_for([@measurement.location, @measurement]) do |f|%>
+  <%= render partial: "layouts/errors", locals: {record: @location} %> 
   <%= f.label :location %>
-  <%= f.text_field :location_id, required: true, class: 'form-control', value: @location.street_address %></br></br>
+  <%= f.text_field :location, value: @measurement.location.street_address %></br></br>
   <%= f.label :length %>
   <%= f.number_field :length %></br></br>
   <%= f.label :width %>
   <%= f.number_field :width %></br></br>
   <%= f.label :date %>
   <%= f.date_field :date %></br></br>
-
+  <%= f.hidden_field :location_id %>
   <%= f.submit %>
 <% end %>
