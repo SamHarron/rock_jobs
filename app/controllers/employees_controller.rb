@@ -16,9 +16,13 @@ class EmployeesController < ApplicationController
 
 
     def show
-        require_logged_in
-        find_employee
-        redirect_to '/signup' if !@employee
+            require_logged_in
+            find_employee
+        if !@employee
+            session.clear
+            flash[:errors] = "That Employee Does Not Exist"
+            redirect_to '/signup'
+        end        
     end
 
     def edit
