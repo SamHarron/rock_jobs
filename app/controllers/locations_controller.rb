@@ -11,11 +11,12 @@ class LocationsController < ApplicationController
     end
 
     def index
-        if employee_check
+        if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
           @locations = @employee.locations
         else
-          flash[:errors] = ["Employee Not Found"] if params[:employee_id]
-          redirect_to employee_path(current_user)
+          session.clear
+          flash[:errors] = "No Employee Found"
+          redirect_to '/signup'
         end
     end
 
@@ -56,7 +57,7 @@ class LocationsController < ApplicationController
      end
 
      def employee_check
-        params[:employee_id] && @employee = current_user
+        @employee = Employee.find_by_id(params[:employee_id])
      end
 
      def find_location
