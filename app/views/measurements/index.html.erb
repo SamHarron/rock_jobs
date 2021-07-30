@@ -9,7 +9,7 @@
   <% else %>
 <ul>
 <% @measurements.each do |m|%>
-  <li><%= m.employee.username %> - <%= m.length %>" x <%= m.width %>"
+  <li><%= m.employee.username %> - <%= m.length %>" x <%= m.width %>" - <%= link_to 'Edit', edit_location_measurement_path(@location, m.id)%> 
   </br>Measured On: <%= m.date %> </br></br>
 <% end %>
 </ul>

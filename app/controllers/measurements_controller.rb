@@ -32,6 +32,7 @@ class MeasurementsController < ApplicationController
   end
 
   def edit
+    @measurement = Measurement.new
   end
 
   def update
@@ -49,9 +50,9 @@ class MeasurementsController < ApplicationController
   end
 
   def set_measurement
-    @measurement = Measurement.find_by(id: params[:id])
+    @measurement = Measurement.find_by_id(params[:id])
     if !@measurement
-      flash[:errors] = ["Measurement was not found"]
+      flash[:errors] = "Measurement was not found"
       redirect_to employee_path(current_user)
     end
   end
