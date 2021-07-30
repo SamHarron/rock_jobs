@@ -1,5 +1,6 @@
+
   <%= form_for([@measurement.location, @measurement]) do |f|%>
-  <%= render partial: "layouts/errors", locals: {record: @location} %> 
+  <%= render partial: "layouts/errors", locals: {record: @measurement} %> 
   <%= f.label :location %>
   <%= f.text_field :location, value: @measurement.location.street_address %></br></br>
   <%= f.label :length %>

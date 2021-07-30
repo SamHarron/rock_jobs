@@ -1,14 +1,14 @@
 class MeasurementsController < ApplicationController
   before_action :require_logged_in
-  before_action :set_measurement, only: [:edit, :update]
   before_action :redirect_if_not_employee, only: [:edit, :update]
+  before_action :set_measurement, only: [:edit, :update]
 
   
   def index
     if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurements = @location.measurements
     else
-      flash[:errors] = "That Location Does Not Exist" if params[:location_id]
+      flash[:errors] = "That Location Does Not Exist" if !params[:location_id]
       redirect_to employee_locations_path(current_user)
     end
   end
@@ -17,7 +17,7 @@ class MeasurementsController < ApplicationController
     if params[:location_id] && @location = Location.find_by_id(params[:location_id])
       @measurement = @location.measurements.build
     else
-      flash[:errors] = "That Location Does Not Exist" if params[:location_id]
+      flash[:errors] = "That Location Does Not Exist" if !params[:location_id]
       @measurement = Measurement.new
     end
   end
@@ -32,14 +32,14 @@ class MeasurementsController < ApplicationController
   end
 
   def edit
-    @measurement = Measurement.new
   end
 
   def update
     if @measurement.update(measurement_params)
       redirect_to location_measurements_path(@measurement)
     else
-      render :edit
+      flash[:errors] = "Unable to Update. Please Try Agian."
+      redirect_to edit_location_measurement_path(@measurement)
     end
   end
 
@@ -58,6 +58,7 @@ class MeasurementsController < ApplicationController
   end
 
   def redirect_if_not_employee
+    set_measurement
     redirect_to login_path if @measurement.employee != current_user
- end
+  end
 end
