@@ -1,6 +1,5 @@
 class MeasurementsController < ApplicationController
   before_action :require_logged_in
-  before_action :redirect_if_not_employee, only: [:edit, :update]
   before_action :set_measurement, only: [:edit, :update]
 
   
@@ -57,8 +56,5 @@ class MeasurementsController < ApplicationController
     end
   end
 
-  def redirect_if_not_employee
-    set_measurement
-    redirect_to login_path if @measurement.employee != current_user
-  end
+
 end
