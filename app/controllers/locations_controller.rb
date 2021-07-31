@@ -11,13 +11,13 @@ class LocationsController < ApplicationController
     end
 
     def index
-        if params[:employee_id] && employee_check
-          @locations = @employee.locations
-        else
-          session.clear
-          flash[:errors] = "No Employee Found"
-          redirect_to '/signup'
-        end
+      if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
+        @locations = @employee.locations
+      else
+        session.clear
+        flash[:errors] = "No Employee Found"
+        redirect_to '/signup'
+      end
     end
 
     def create 
@@ -39,7 +39,7 @@ class LocationsController < ApplicationController
         find_location
         redirect_to employee_path if !@location || @location.employee != current_user
        if @location.update(location_params)
-         redirect_to employee_locations_path(@location)
+         redirect_to employee_locations_path(@location.employee)
        else
          render :edit
        end
@@ -61,7 +61,7 @@ class LocationsController < ApplicationController
      end
 
      def find_location
-        @location = Location.find_by(params[:location_id])
+        @location = Location.find_by_id(params[:id])
      end
 
 end

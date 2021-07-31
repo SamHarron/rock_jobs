@@ -10,7 +10,7 @@
   <% else %>
   <ul>
 <% @locations.each do |loc|%>
-  <li><%= loc.street_address %> - <%= link_to 'View', location_measurements_path(loc) %>
+  <li><%= loc.street_address %> - <%= link_to 'View', location_measurements_path(loc) %> - <%= link_to 'Edit', edit_employee_location_path(loc.employee_id, loc.id) %>
 <% end %>
 </ul>
 <% end %>
