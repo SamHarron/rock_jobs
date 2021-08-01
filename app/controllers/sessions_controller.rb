@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
         end
         if employee.valid?
             session[:employee_id] = employee.id
-            redirect_to employee_locations_path(employee.id)
+            redirect_to employee_path(employee.id)
         else
             redirect_to login_path
         end
