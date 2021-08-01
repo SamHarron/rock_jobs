@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :measurements, only: [:index, :new, :create, :update, :edit]
   end
 
-
+  get '/auth/:provider/callback', to: 'sessions#google'
 end
 

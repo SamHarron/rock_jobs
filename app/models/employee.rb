@@ -9,7 +9,7 @@ class Employee < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true
 
-    validates :contact_number, phone: { possible: true, allow_blank: false}, uniqueness: false
+    validates :contact_number, phone: { possible: true, allow_blank: true}, uniqueness: false
     before_save :format_phone
 
     def format_phone

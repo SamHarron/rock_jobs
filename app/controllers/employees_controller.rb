@@ -21,7 +21,6 @@ class EmployeesController < ApplicationController
         if !@employee
             session.clear
             flash[:errors] = "That Employee Does Not Exist"
-            redirect_to '/signup'
         end        
     end
 
