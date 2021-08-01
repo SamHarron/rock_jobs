@@ -1,8 +1,4 @@
-<% if @employee %>
-    <h1> <%= @employee.username %>'s Locations </h1>
-<% else %>
-    <h1> Please Sign In or Sign Up </h1>
-<% end %>
+<h1> <%= employees_locations %> </h1>
 
 
 <% if @locations == [] %>
@@ -14,6 +10,3 @@
 <% end %>
 </ul>
 <% end %>
-
-
-
