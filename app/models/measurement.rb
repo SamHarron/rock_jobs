@@ -6,4 +6,7 @@ class Measurement < ApplicationRecord
     validates :length, presence: true
     validates :width, presence: true
     validates :date, presence: true
+
+    scope :latest_date, -> {order(date: :desc)}
+
 end

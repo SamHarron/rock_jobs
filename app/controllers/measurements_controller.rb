@@ -5,7 +5,7 @@ class MeasurementsController < ApplicationController
   
   def index
     if params[:location_id] && @location = Location.find_by_id(params[:location_id])
-      @measurements = @location.measurements
+      @measurements = @location.measurements.latest_date
     else
       flash[:errors] = "That Location Does Not Exist" if !params[:location_id]
       redirect_to employee_locations_path(current_user)
