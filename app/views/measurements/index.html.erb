@@ -9,7 +9,7 @@
   <% else %>
 <ul>
 <% @measurements.each do |m|%>
-  <li><%= m.employee.username %> - <%= m.length %>" x <%= m.width %>" - <%= link_to 'Edit', edit_location_measurement_path(@location, m.id)%> 
+  <li><%= m.employee.username %> - <%= m.length %>" x <%= m.width %>" - <%= link_to 'Edit', edit_location_measurement_path(@location, m.id)%> - <%= link_to "Delete", location_measurement_path(@location, m.id), method: :delete, data: { confirm: "Are you sure?" } %>
   </br>Measured On: <%= m.date %> </br></br>
 <% end %>
 </ul>

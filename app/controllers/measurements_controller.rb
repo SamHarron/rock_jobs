@@ -1,6 +1,6 @@
 class MeasurementsController < ApplicationController
   before_action :require_logged_in
-  before_action :set_measurement, only: [:edit, :update]
+  before_action :set_measurement, only: [:edit, :update, :destroy]
 
   
   def index
@@ -40,6 +40,12 @@ class MeasurementsController < ApplicationController
       flash[:errors] = "Unable to Update. Please Try Agian."
       redirect_to edit_location_measurement_path(@measurement)
     end
+  end
+
+  def destroy
+    @measurement.destroy
+
+    redirect_to employee_locations_path(current_user)
   end
 
   private
