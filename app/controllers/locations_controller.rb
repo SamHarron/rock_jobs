@@ -12,7 +12,7 @@ class LocationsController < ApplicationController
 
     def index
       if params[:employee_id] && @employee = Employee.find_by_id(params[:employee_id])
-        @locations = @employee.locations
+        @locations = @employee.locations.alpha
       else
         session.clear
         flash[:errors] = "No Employee Found"

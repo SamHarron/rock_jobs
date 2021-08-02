@@ -8,5 +8,5 @@ class Location < ApplicationRecord
     validates :state, presence: true
     validates :zip_code, presence: true
 
-
+    scope :alpha, -> {order('street_address')}
 end
