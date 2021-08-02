@@ -2,7 +2,8 @@
 <% if logged_in? %>
     <%= link_to "Logout", logout_path, method: 'delete' %> |||
     <%= link_to "Add A New Location", new_employee_location_path(current_user) %> |||
-    <%= link_to "Employee Locations", employee_locations_path(current_user) %> 
+    <%= link_to "Employee Locations", employee_locations_path(current_user) %>  |||
+    <%= link_to "Profile", employee_path(current_user) %></br></br>
 <% else %>
     <%= link_to 'Login', login_path %> |||
     <%= link_to 'Create a New Profile', new_employee_path %></br></br>

@@ -1,8 +1,11 @@
-<h1> <%= employees_locations %> </h1>
+<h1> <%= employees_locations %> </h1></br></br>
 
 
 <% if @locations == [] %>
   <h5> This Employee Has No Measured Locations </h5>
+    <%= link_to "Back to Profile Page", employee_path(current_user) %></br></br>
+    <%= link_to "Add A New Location", new_employee_location_path(current_user) %>
+
   <% else %>
   <ul>
 <% @locations.each do |loc|%>

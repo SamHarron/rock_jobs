@@ -17,7 +17,18 @@
  
  h1 {
    text-align: center;
-
  }
+
+ h2 {
+  text-align: left;
+}
+
+h5 {
+  text-align: left;
+}
+
+form {
+  text-align: left;
+}
 
  
