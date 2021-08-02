@@ -49,6 +49,13 @@ class LocationsController < ApplicationController
         find_location
         redirect_to employee_locations_path if !@location
       end
+
+      def destroy
+        find_location
+        @location.destroy
+    
+        redirect_to employee_path(current_user)
+      end
  
      private
  
