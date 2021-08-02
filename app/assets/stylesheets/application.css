@@ -31,4 +31,16 @@ form {
   text-align: left;
 }
 
+nav {
+  text-align: center;
+}
+
+div {
+  border-radius: 10px;
+}
+
+p {
+  text-align: center;
+}
+
  

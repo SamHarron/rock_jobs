@@ -1,6 +1,6 @@
 <h1> <%= @employee.username %>'s Profile </h1>
 <p> Email: <%= @employee.email %> </p>
 <p> Contact Number: <%= @employee.contact_number %> </p>
-<%= link_to 'Employee Measured Locations', employee_locations_path(@employee) %> </br></br>
-<%= link_to 'Update Contact Information', edit_employee_path(@employee) %> </br>
+<p><%= link_to 'Employee Measured Locations', employee_locations_path(@employee) %></p> 
+<p><%= link_to 'Update Contact Information', edit_employee_path(@employee) %></p> </br>
 
