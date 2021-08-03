@@ -35,7 +35,7 @@ class MeasurementsController < ApplicationController
 
   def update
     if @measurement.update(measurement_params)
-      redirect_to location_measurements_path(@measurement)
+      redirect_to employee_locations_path(current_user)
     else
       flash[:errors] = "Unable to Update. Please Try Agian."
       redirect_to edit_location_measurement_path(@measurement)
