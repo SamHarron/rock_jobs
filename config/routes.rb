@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   resources :employees, only: [:new, :create, :show, :update, :edit] do
-    resources :locations
+    resources :locations, only: [:new, :index]
   end
 
-  resources :locations do
+  resources :locations, except: [:index] do
     resources :measurements
   end
 

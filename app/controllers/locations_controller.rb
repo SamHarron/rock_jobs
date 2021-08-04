@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
     before_action :require_logged_in
-
+    before_action :find_location, only: [:edit, :update, :show, :destroy]
+    before_action :redirect_if_not_auth, only: [:edit, :update, :destroy]
 
     def new
         if employee_check
@@ -32,12 +33,9 @@ class LocationsController < ApplicationController
 
 
     def edit
-        find_location
     end
 
     def update
-        find_location
-        redirect_to employee_path if !@location || @location.employee != current_user
        if @location.update(location_params)
          redirect_to employee_locations_path(@location.employee)
        else
@@ -46,12 +44,10 @@ class LocationsController < ApplicationController
      end
 
      def show
-        find_location
         redirect_to employee_locations_path if !@location
       end
 
       def destroy
-        find_location
         @location.destroy
     
         redirect_to employee_path(current_user)
@@ -69,6 +65,10 @@ class LocationsController < ApplicationController
 
      def find_location
         @location = Location.find_by_id(params[:id])
+     end
+
+     def redirect_if_not_auth
+        redirect_to employee_path(current_user) if !@location || @location.employee != current_user
      end
 
 end

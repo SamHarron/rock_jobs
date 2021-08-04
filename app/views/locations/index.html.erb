@@ -9,7 +9,7 @@
   <% else %>
   <ul>
 <% @locations.each do |loc|%>
-  <li><%= loc.street_address %> - <%= link_to 'View', location_measurements_path(loc) %> - <%= link_to 'Edit', edit_employee_location_path(loc.employee_id, loc.id) %> - <%= link_to "Delete", employee_location_path(loc.employee_id, loc.id), method: :delete, data: { confirm: "Are you sure?" } %>
+  <li><%= loc.street_address %> - <%= link_to 'View', location_measurements_path(loc) %> - <%= link_to 'Edit', edit_location_path(loc.id) %> - <%= link_to "Delete", location_path(loc.id), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 </ul>
 <% end %>
