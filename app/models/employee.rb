@@ -16,4 +16,5 @@ class Employee < ApplicationRecord
         self.contact_number = Phonelib.parse(contact_number).national
     end
     
+    scope :employee_most_locations, -> {joins(:locations).group:employee_id).order('count(locations.id) desc').limit(1)} 
 end
